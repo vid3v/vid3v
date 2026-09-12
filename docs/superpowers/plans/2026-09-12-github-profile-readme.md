@@ -107,7 +107,7 @@ test("loadConfig reads the real profile.config.json", () => {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --testconfig.test.js`
+Run: `node --test tests/config.test.js`
 Expected: FAIL with `Cannot find module '../scripts/lib/config.js'`
 
 - [ ] **Step 3: Create `profile.config.json`**
@@ -185,7 +185,7 @@ export function validateConfig(config) {
 
 - [ ] **Step 5: Run test to verify it passes**
 
-Run: `node --testconfig.test.js`
+Run: `node --test tests/config.test.js`
 Expected: PASS (6 tests)
 
 - [ ] **Step 6: Commit**
@@ -261,7 +261,7 @@ test("replaceBlock throws when end marker precedes start marker", () => {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --testmarkers.test.js`
+Run: `node --test tests/markers.test.js`
 Expected: FAIL with `Cannot find module '../scripts/lib/markers.js'`
 
 - [ ] **Step 3: Write minimal implementation**
@@ -305,7 +305,7 @@ export function replaceBlock(readme, section, content) {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --testmarkers.test.js`
+Run: `node --test tests/markers.test.js`
 Expected: PASS (6 tests)
 
 - [ ] **Step 5: Commit**
@@ -412,7 +412,7 @@ test("fetchGitHubRepo throws on malformed repo payload", async () => {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --testfetchers.test.js`
+Run: `node --test tests/fetchers.test.js`
 Expected: FAIL with `Cannot find module '../scripts/lib/fetchers.js'`
 
 - [ ] **Step 3: Write minimal implementation**
@@ -499,7 +499,7 @@ export async function fetchGitHubRepo(fullName, token) {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --testfetchers.test.js`
+Run: `node --test tests/fetchers.test.js`
 Expected: PASS (6 tests)
 
 - [ ] **Step 5: Commit**
@@ -618,7 +618,7 @@ test("selectProjects skips configured projects missing from the portfolio", () =
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --testscoring.test.js`
+Run: `node --test tests/scoring.test.js`
 Expected: FAIL with `Cannot find module '../scripts/lib/scoring.js'`
 
 - [ ] **Step 3: Write minimal implementation**
@@ -697,7 +697,7 @@ export function selectProjects(config, projectsBySlug, reposByFullName, now = ne
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --testscoring.test.js`
+Run: `node --test tests/scoring.test.js`
 Expected: PASS (8 tests)
 
 - [ ] **Step 5: Commit**
@@ -806,7 +806,7 @@ test("renderCoreStack groups by category and respects the total limit", () => {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --testrender.test.js`
+Run: `node --test tests/render.test.js`
 Expected: FAIL with `Cannot find module '../scripts/lib/render.js'`
 
 - [ ] **Step 3: Write minimal implementation**
@@ -924,7 +924,7 @@ export function renderCoreStack(stack, limit) {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --testrender.test.js`
+Run: `node --test tests/render.test.js`
 Expected: PASS (8 tests)
 
 - [ ] **Step 5: Commit**
@@ -1033,7 +1033,7 @@ test("generateReadme throws when fewer than limits.selectedWork projects match",
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --testgenerate.test.js`
+Run: `node --test tests/generate.test.js`
 Expected: FAIL with `Cannot find module '../scripts/lib/generate.js'`
 
 - [ ] **Step 3: Write minimal implementation**
@@ -1073,7 +1073,7 @@ export function generateReadme({ readme, config, portfolio, repos, events, repos
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --testgenerate.test.js`
+Run: `node --test tests/generate.test.js`
 Expected: PASS (3 tests)
 
 - [ ] **Step 5: Commit**
