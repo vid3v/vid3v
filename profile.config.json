@@ -13,11 +13,31 @@
     "popularity": 1,
     "freshness": 1
   },
+  "excludedRepos": [
+    "vid3v/vid3v",
+    "vid3v/random-color",
+    "vid3v/123game"
+  ],
   "selectedProjects": [
-    { "slug": "feathers-refresh", "githubRepo": "vid3v/feathers-refresh" },
-    { "slug": "maureen", "githubRepo": "vid3v/maureen" },
-    { "slug": "waitnous", "githubRepo": "vid3v/wait-nous-app" },
-    { "slug": "fala-money", "githubRepo": null },
-    { "slug": "factory-management", "githubRepo": null }
+    {
+      "slug": "feathers-refresh",
+      "githubRepo": "vid3v/feathers-refresh"
+    },
+    {
+      "slug": "maureen",
+      "githubRepo": "vid3v/maureen"
+    },
+    {
+      "slug": "waitnous",
+      "githubRepo": "vid3v/wait-nous-app"
+    },
+    {
+      "slug": "fala-money",
+      "githubRepo": null
+    },
+    {
+      "slug": "factory-management",
+      "githubRepo": null
+    }
   ]
 }

@@ -28,13 +28,13 @@ Open-source FeathersJS packages: refresh-token rotation, reuse detection and ser
 
 WhatsApp marketing automation platform running entirely on the Cloudflare edge stack
 
-`Cloudflare Workers · Hono · TypeScript · D1`
+`Cloudflare Workers · Hono · TypeScript · D1` · ⭐ 0
 
 ### [WaitNous](https://vid3v.com/fr/projects/waitnous) — *Full-Stack Developer*
 
 Trust-focused ridesharing platform for the Canadian market: mobile app, real-time API, back office and compliance website
 
-`React Native · Expo · TypeScript · Feathers`
+`React Native · Expo · TypeScript · Feathers` · ⭐ 0
 <!-- PROFILE:END:SELECTED_WORK -->
 
 ## Recent GitHub activity
@@ -46,9 +46,7 @@ Trust-focused ridesharing platform for the Canadian market: mobile app, real-tim
 ## Open source & public work
 
 <!-- PROFILE:START:POPULAR_WORK -->
-- [random-color](https://github.com/vid3v/random-color) — A tiny JavaScript Library for generating arbitrary colors (⭐ 1 · TypeScript)
-- [123game](https://github.com/vid3v/123game) — Simple 123 Game (⭐ 0 · Vue)
-- [vid3v](https://github.com/vid3v/vid3v) — Config files for my GitHub profile. (⭐ 0)
+No public repositories with descriptions yet.
 <!-- PROFILE:END:POPULAR_WORK -->
 
 ## Core stack
