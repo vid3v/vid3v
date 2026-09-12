@@ -4,7 +4,7 @@
 
 Founder building production-ready web and mobile products, typed APIs and edge-native systems.
 
-[Portfolio](https://vid3v.com) · [Contact](https://vid3v.com/fr/contact) · [LinkedIn](https://www.linkedin.com/in/vivien-tassing)
+[Portfolio](https://vid3v.com) · [Contact](https://vid3v.com/en/contact) · [LinkedIn](https://www.linkedin.com/in/vivien-tassing)
 
 > Open to selected projects and collaborations.
 
@@ -24,13 +24,13 @@ Open-source FeathersJS packages: refresh-token rotation, reuse detection and ser
 
 `TypeScript · Feathers · Node.js · JWT`
 
-### [Maureen](https://vid3v.com/fr/projects/maureen) — *Founder & Full-Stack Developer*
+### [Maureen](https://vid3v.com/en/projects) — *Founder & Full-Stack Developer*
 
 WhatsApp marketing automation platform running entirely on the Cloudflare edge stack
 
 `Cloudflare Workers · Hono · TypeScript · D1`
 
-### [WaitNous](https://vid3v.com/fr/projects/waitnous) — *Full-Stack Developer*
+### [WaitNous](https://vid3v.com/en/projects) — *Full-Stack Developer*
 
 Trust-focused ridesharing platform for the Canadian market: mobile app, real-time API, back office and compliance website
 
@@ -65,5 +65,5 @@ No public repositories with descriptions yet.
 
 Open to selected projects and collaborations.
 
-- **For projects:** [Discuss your product → vid3v.com/contact](https://vid3v.com/fr/contact)
+- **For projects:** [Discuss your product → vid3v.com/contact](https://vid3v.com/en/contact)
 - **For opportunities:** [Connect on LinkedIn](https://www.linkedin.com/in/vivien-tassing)

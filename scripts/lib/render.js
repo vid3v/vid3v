@@ -31,7 +31,8 @@ export function projectLink(project) {
   return (
     project.githubUrl ||
     project.demoUrl ||
-    `https://vid3v.com/fr/projects/${project.slug}`
+    // The portfolio has no per-project detail page — link to the English projects list.
+    "https://vid3v.com/en/projects"
   );
 }
 

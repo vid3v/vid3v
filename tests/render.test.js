@@ -14,10 +14,10 @@ test("escapeInline neutralizes Markdown-breaking characters", () => {
   assert.equal(escapeInline(undefined), "");
 });
 
-test("projectLink prefers githubUrl, then demoUrl, then portfolio page", () => {
+test("projectLink prefers githubUrl, then demoUrl, then the English projects list", () => {
   assert.equal(projectLink({ githubUrl: "https://g", demoUrl: "https://d", slug: "s" }), "https://g");
   assert.equal(projectLink({ demoUrl: "https://d", slug: "s" }), "https://d");
-  assert.equal(projectLink({ slug: "maureen" }), "https://vid3v.com/fr/projects/maureen");
+  assert.equal(projectLink({ slug: "maureen" }), "https://vid3v.com/en/projects");
 });
 
 test("renderSelectedWork renders title, role, description and technologies", () => {
