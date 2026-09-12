@@ -43,6 +43,13 @@ test("validateConfig rejects non-positive limits", () => {
   assert.throws(() => validateConfig(broken), /limits/);
 });
 
+test("validateConfig rejects invalid weights", () => {
+  const broken = { ...validConfig, weights: { ...validConfig.weights, relevance: "3" } };
+  assert.throws(() => validateConfig(broken), /weights/);
+  const negative = { ...validConfig, weights: { ...validConfig.weights, utility: -1 } };
+  assert.throws(() => validateConfig(negative), /weights/);
+});
+
 test("loadConfig reads the real profile.config.json", () => {
   const config = loadConfig(new URL("../profile.config.json", import.meta.url));
   assert.equal(config.githubUser, "vid3v");

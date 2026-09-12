@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 
 const REQUIRED_LIMITS = ["selectedWork", "recentActivity", "popularWork", "coreStackItems"];
+const REQUIRED_WEIGHTS = ["relevance", "utility", "popularity", "freshness"];
 
 export function loadConfig(path) {
   const raw = JSON.parse(readFileSync(path, "utf8"));
@@ -29,6 +30,12 @@ export function validateConfig(config) {
     const value = config.limits?.[key];
     if (!Number.isInteger(value) || value <= 0) {
       errors.push(`limits.${key} must be a positive integer`);
+    }
+  }
+  for (const key of REQUIRED_WEIGHTS) {
+    const value = config.weights?.[key];
+    if (typeof value !== "number" || !Number.isFinite(value) || value < 0) {
+      errors.push(`weights.${key} must be a non-negative finite number`);
     }
   }
   if (errors.length > 0) {
