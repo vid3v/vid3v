@@ -1012,7 +1012,7 @@ test("generateReadme replaces all four blocks and preserves editorial content", 
   assert.match(output, /### \[Maureen\]/);
   assert.match(output, /### \[WaitNous\]/);
   assert.match(output, /Pushed to \[`vid3v\/maureen`\]/);
-  assert.match(output, /maureen — WhatsApp automation/);
+  assert.match(output, /\[maureen\](https:\/\/github\.com\/vid3v\/maureen) — WhatsApp automation/);
   assert.match(output, /\*\*Languages:\*\* TypeScript/);
 });
 
