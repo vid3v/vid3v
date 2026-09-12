@@ -1012,7 +1012,7 @@ test("generateReadme replaces all four blocks and preserves editorial content", 
   assert.match(output, /### \[Maureen\]/);
   assert.match(output, /### \[WaitNous\]/);
   assert.match(output, /Pushed to \[`vid3v\/maureen`\]/);
-  assert.match(output, /maureen — WhatsApp automation/);
+  assert.match(output, /\[maureen\](https:\/\/github\.com\/vid3v\/maureen) — WhatsApp automation/);
   assert.match(output, /\*\*Languages:\*\* TypeScript/);
 });
 
@@ -1208,7 +1208,7 @@ Open to selected projects and collaborations.
 
 - [ ] **Step 3: Run the full test suite**
 
-Run: `node --test tests/`
+Run: `node --test`
 Expected: PASS (31 tests across 6 files)
 
 - [ ] **Step 4: Verify the generator end-to-end in dry-run mode**
@@ -1274,7 +1274,7 @@ jobs:
           node-version: 24
 
       - name: Run tests
-        run: node --test tests/
+        run: node --test
 
       - name: Regenerate README
         run: node scripts/update-profile-readme.mjs
@@ -1300,7 +1300,7 @@ Notes:
 
 - [ ] **Step 2: Run the full test suite one final time**
 
-Run: `node --test tests/`
+Run: `node --test`
 Expected: PASS (31 tests)
 
 - [ ] **Step 3: Verify the final repository structure**

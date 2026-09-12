@@ -1,0 +1,47 @@
+name: Update profile README
+
+on:
+  schedule:
+    # Daily at 05:23 UTC
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-profile-readme
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Regenerate dynamic sections
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Run tests
+        run: node --test
+
+      - name: Regenerate README
+        run: node scripts/update-profile-readme.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push if changed
+        run: |
+          if [[ -n "$(git status --porcelain README.md)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add README.md
+            git commit -m "chore(profile): update dynamic README sections"
+            git push
+          else
+            echo "README already up to date — nothing to commit"
+          fi
