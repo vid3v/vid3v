@@ -38,6 +38,13 @@ export function validateConfig(config) {
       errors.push(`weights.${key} must be a non-negative finite number`);
     }
   }
+  if (
+    config.excludedRepos !== undefined &&
+    (!Array.isArray(config.excludedRepos) ||
+      config.excludedRepos.some((r) => typeof r !== "string"))
+  ) {
+    errors.push("excludedRepos must be an array of strings");
+  }
   if (errors.length > 0) {
     throw new Error(`Invalid profile.config.json:\n- ${errors.join("\n- ")}`);
   }

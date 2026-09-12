@@ -60,7 +60,10 @@ export async function fetchGitHubRepos(config, token) {
   if (!Array.isArray(repos)) {
     throw new Error("GitHub repos response is malformed");
   }
-  return repos.filter((repo) => !repo.fork && !repo.archived);
+  const excluded = new Set(config.excludedRepos ?? []);
+  return repos.filter(
+    (repo) => !repo.fork && !repo.archived && !excluded.has(repo.full_name)
+  );
 }
 
 export async function fetchGitHubEvents(config, token) {
@@ -71,7 +74,8 @@ export async function fetchGitHubEvents(config, token) {
   if (!Array.isArray(events)) {
     throw new Error("GitHub events response is malformed");
   }
-  return events;
+  const excluded = new Set(config.excludedRepos ?? []);
+  return events.filter((event) => !excluded.has(event.repo?.name));
 }
 
 export async function fetchGitHubRepo(fullName, token) {

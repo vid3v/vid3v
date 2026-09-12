@@ -24,6 +24,7 @@ const reposResponse = [
   { full_name: "vid3v/maureen", fork: false, archived: false },
   { full_name: "vid3v/some-fork", fork: true, archived: false },
   { full_name: "vid3v/old-stuff", fork: false, archived: true },
+  { full_name: "vid3v/123game", fork: false, archived: false },
 ];
 
 let originalFetch;
@@ -71,7 +72,7 @@ test("validatePortfolio rejects malformed payloads", () => {
 test("fetchGitHubRepos filters out forks and archived repositories", async () => {
   globalThis.fetch = async () => new Response(JSON.stringify(reposResponse), { status: 200 });
   const repos = await fetchGitHubRepos(config, undefined);
-  assert.deepEqual(repos.map((r) => r.full_name), ["vid3v/maureen"]);
+  assert.deepEqual(repos.map((r) => r.full_name), ["vid3v/maureen", "vid3v/123game"]);
 });
 
 test("fetchGitHubRepo throws on malformed repo payload", async () => {
@@ -99,4 +100,16 @@ test("fetchJson sends user-agent and forward custom headers", async () => {
   assert.equal(capturedInit.headers["user-agent"], "vid3v-profile-readme");
   assert.equal(capturedInit.headers.accept, "application/vnd.github+json");
   assert.equal(capturedInit.headers.authorization, "Bearer t");
+});
+
+test("fetchGitHubRepos excludes configured repositories", async () => {
+  const configWithExclusions = {
+    portfolioBaseUrl: "https://vid3v.com",
+    githubUser: "vid3v",
+    excludedRepos: ["vid3v/123game"],
+  };
+  globalThis.fetch = async () =>
+    new Response(JSON.stringify(reposResponse), { status: 200 });
+  const repos = await fetchGitHubRepos(configWithExclusions, undefined);
+  assert.deepEqual(repos.map((r) => r.full_name), ["vid3v/maureen"]);
 });

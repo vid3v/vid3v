@@ -55,3 +55,8 @@ test("loadConfig reads the real profile.config.json", () => {
   assert.equal(config.githubUser, "vid3v");
   assert.equal(config.selectedProjects.length, 5);
 });
+
+test("validateConfig rejects non-array excludedRepos", () => {
+  const broken = { ...validConfig, excludedRepos: "vid3v/123game" };
+  assert.throws(() => validateConfig(broken), /excludedRepos/);
+});
