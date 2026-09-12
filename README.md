@@ -22,19 +22,19 @@ Founder building production-ready web and mobile products, typed APIs and edge-n
 
 Open-source FeathersJS packages: refresh-token rotation, reuse detection and server-side session revocation
 
-`TypeScript · Feathers · Node.js · JWT` · ⭐ 0
+`TypeScript · Feathers · Node.js · JWT`
 
 ### [Maureen](https://vid3v.com/fr/projects/maureen) — *Founder & Full-Stack Developer*
 
 WhatsApp marketing automation platform running entirely on the Cloudflare edge stack
 
-`Cloudflare Workers · Hono · TypeScript · D1` · ⭐ 0
+`Cloudflare Workers · Hono · TypeScript · D1`
 
 ### [WaitNous](https://vid3v.com/fr/projects/waitnous) — *Full-Stack Developer*
 
 Trust-focused ridesharing platform for the Canadian market: mobile app, real-time API, back office and compliance website
 
-`React Native · Expo · TypeScript · Feathers` · ⭐ 0
+`React Native · Expo · TypeScript · Feathers`
 <!-- PROFILE:END:SELECTED_WORK -->
 
 ## Recent GitHub activity
