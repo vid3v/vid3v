@@ -13,40 +13,44 @@ import { generateReadme } from "./lib/generate.js";
 const dryRun = process.argv.slice(2).includes("--dry-run");
 const root = path.resolve(import.meta.dirname, "..");
 
-try {
-  const config = loadConfig(path.join(root, "profile.config.json"));
-  const readmePath = path.join(root, "README.md");
-  const readme = readFileSync(readmePath, "utf8");
+async function main() {
+  try {
+    const config = loadConfig(path.join(root, "profile.config.json"));
+    const readmePath = path.join(root, "README.md");
+    const readme = readFileSync(readmePath, "utf8");
 
-  const token = process.env.GITHUB_TOKEN;
-  const [portfolio, repos, events] = await Promise.all([
-    fetchPortfolio(config),
-    fetchGitHubRepos(config, token),
-    fetchGitHubEvents(config, token),
-  ]);
+    const token = process.env.GITHUB_TOKEN;
+    const [portfolio, repos, events] = await Promise.all([
+      fetchPortfolio(config),
+      fetchGitHubRepos(config, token),
+      fetchGitHubEvents(config, token),
+    ]);
 
-  const reposByFullName = Object.fromEntries(repos.map((repo) => [repo.full_name, repo]));
-  for (const entry of config.selectedProjects) {
-    if (entry.githubRepo && !reposByFullName[entry.githubRepo]) {
-      reposByFullName[entry.githubRepo] = await fetchGitHubRepo(entry.githubRepo, token);
+    const reposByFullName = Object.fromEntries(repos.map((repo) => [repo.full_name, repo]));
+    for (const entry of config.selectedProjects) {
+      if (entry.githubRepo && !reposByFullName[entry.githubRepo]) {
+        reposByFullName[entry.githubRepo] = await fetchGitHubRepo(entry.githubRepo, token);
+      }
     }
+
+    const updated = generateReadme({ readme, config, portfolio, repos, events, reposByFullName });
+
+    if (dryRun) {
+      process.stdout.write(updated);
+      return;
+    }
+
+    if (updated === readme) {
+      console.log("README is already up to date");
+      return;
+    }
+
+    writeFileSync(readmePath, updated);
+    console.log("README updated");
+  } catch (error) {
+    console.error(`Profile README update failed: ${error.message}`);
+    process.exit(1);
   }
-
-  const updated = generateReadme({ readme, config, portfolio, repos, events, reposByFullName });
-
-  if (dryRun) {
-    process.stdout.write(updated);
-    process.exit(0);
-  }
-
-  if (updated === readme) {
-    console.log("README is already up to date");
-    process.exit(0);
-  }
-
-  writeFileSync(readmePath, updated);
-  console.log("README updated");
-} catch (error) {
-  console.error(`Profile README update failed: ${error.message}`);
-  process.exit(1);
 }
+
+await main();

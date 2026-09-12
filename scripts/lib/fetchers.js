@@ -75,7 +75,7 @@ export async function fetchGitHubEvents(config, token) {
 }
 
 export async function fetchGitHubRepo(fullName, token) {
-  // Un 404 means the repo is private, renamed or deleted: per spec §5 the project
+  // A 404 means the repo is private, renamed or deleted: per spec §5 the project
   // stays eligible via its portfolio data and simply has no GitHub metadata.
   const response = await fetchResponse(
     `https://api.github.com/repos/${fullName}`,
