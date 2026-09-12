@@ -79,6 +79,16 @@ test("fetchGitHubRepo throws on malformed repo payload", async () => {
   await assert.rejects(() => fetchGitHubRepo("vid3v/unknown", undefined), /malformed/);
 });
 
+test("fetchGitHubRepo returns undefined on HTTP 404 (private or deleted repo)", async () => {
+  globalThis.fetch = async () => new Response(JSON.stringify({ message: "Not Found" }), { status: 404 });
+  assert.equal(await fetchGitHubRepo("vid3v/maureen", undefined), undefined);
+});
+
+test("fetchGitHubRepo still throws on other HTTP errors", async () => {
+  globalThis.fetch = async () => new Response("rate limited", { status: 403 });
+  await assert.rejects(() => fetchGitHubRepo("vid3v/maureen", undefined), /HTTP 403/);
+});
+
 test("fetchJson sends user-agent and forward custom headers", async () => {
   let capturedInit;
   globalThis.fetch = async (url, init) => {

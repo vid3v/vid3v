@@ -6,11 +6,15 @@ function githubHeaders(token) {
   return headers;
 }
 
-export async function fetchJson(url, headers = {}) {
-  const response = await fetch(url, {
+export async function fetchResponse(url, headers = {}) {
+  return fetch(url, {
     headers: { accept: "application/json", "user-agent": "vid3v-profile-readme", ...headers },
     signal: AbortSignal.timeout(TIMEOUT_MS),
   });
+}
+
+export async function fetchJson(url, headers = {}) {
+  const response = await fetchResponse(url, headers);
   if (!response.ok) {
     throw new Error(`GET ${url} failed: HTTP ${response.status}`);
   }
@@ -71,7 +75,24 @@ export async function fetchGitHubEvents(config, token) {
 }
 
 export async function fetchGitHubRepo(fullName, token) {
-  const repo = await fetchJson(`https://api.github.com/repos/${fullName}`, githubHeaders(token));
+  // Un 404 means the repo is private, renamed or deleted: per spec §5 the project
+  // stays eligible via its portfolio data and simply has no GitHub metadata.
+  const response = await fetchResponse(
+    `https://api.github.com/repos/${fullName}`,
+    githubHeaders(token)
+  );
+  if (response.status === 404) {
+    return undefined;
+  }
+  if (!response.ok) {
+    throw new Error(`GET https://api.github.com/repos/${fullName} failed: HTTP ${response.status}`);
+  }
+  let repo;
+  try {
+    repo = await response.json();
+  } catch (error) {
+    throw new Error(`GET https://api.github.com/repos/${fullName} returned invalid JSON`, { cause: error });
+  }
   if (!repo || typeof repo.full_name !== "string") {
     throw new Error(`GitHub repo ${fullName} response is malformed`);
   }
