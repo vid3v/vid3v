@@ -12,10 +12,11 @@ export function generateReadme({ readme, config, portfolio, repos, events, repos
     portfolio.projects.map((project) => [project.slug, project])
   );
 
+  const needed = Math.min(config.limits.selectedWork, config.selectedProjects.length);
   const selected = selectProjects(config, projectsBySlug, reposByFullName, now);
-  if (selected.length < Math.min(config.limits.selectedWork, config.selectedProjects.length)) {
+  if (selected.length < needed) {
     throw new Error(
-      `Not enough eligible projects to render Selected work (found ${selected.length}, need ${config.limits.selectedWork})`
+      `Not enough eligible projects to render Selected work (found ${selected.length}, need ${needed})`
     );
   }
 
