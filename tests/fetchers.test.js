@@ -78,3 +78,15 @@ test("fetchGitHubRepo throws on malformed repo payload", async () => {
   globalThis.fetch = async () => new Response(JSON.stringify({ message: "Not Found" }), { status: 200 });
   await assert.rejects(() => fetchGitHubRepo("vid3v/unknown", undefined), /malformed/);
 });
+
+test("fetchJson sends user-agent and forward custom headers", async () => {
+  let capturedInit;
+  globalThis.fetch = async (url, init) => {
+    capturedInit = init;
+    return new Response(JSON.stringify({ ok: true }), { status: 200 });
+  };
+  await fetchJson("https://api.github.com/x", { accept: "application/vnd.github+json", authorization: "Bearer t" });
+  assert.equal(capturedInit.headers["user-agent"], "vid3v-profile-readme");
+  assert.equal(capturedInit.headers.accept, "application/vnd.github+json");
+  assert.equal(capturedInit.headers.authorization, "Bearer t");
+});

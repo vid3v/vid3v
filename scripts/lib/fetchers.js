@@ -14,7 +14,11 @@ export async function fetchJson(url, headers = {}) {
   if (!response.ok) {
     throw new Error(`GET ${url} failed: HTTP ${response.status}`);
   }
-  return response.json();
+  try {
+    return await response.json();
+  } catch (error) {
+    throw new Error(`GET ${url} returned invalid JSON`, { cause: error });
+  }
 }
 
 export function validatePortfolio({ profile, projects, stack }) {
