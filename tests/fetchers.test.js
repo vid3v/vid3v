@@ -69,6 +69,13 @@ test("validatePortfolio rejects malformed payloads", () => {
   );
 });
 
+test("validatePortfolio rejects an empty stack", () => {
+  assert.throws(
+    () => validatePortfolio({ profile: { name: "x" }, projects: [{ slug: "p" }], stack: [] }),
+    /stack/
+  );
+});
+
 test("fetchGitHubRepos filters out forks and archived repositories", async () => {
   globalThis.fetch = async () => new Response(JSON.stringify(reposResponse), { status: 200 });
   const repos = await fetchGitHubRepos(config, undefined);

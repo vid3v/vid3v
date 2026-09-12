@@ -46,7 +46,8 @@ export function renderSelectedWork(selected) {
         .slice(0, 4)
         .map(escapeInline)
         .join(" · ");
-      const stars = repo ? ` · ⭐ ${repo.stargazers_count}` : "";
+      const stars =
+        repo && repo.stargazers_count > 0 ? ` · ⭐ ${repo.stargazers_count}` : "";
       return `### [${name}](${link})${role}\n\n${description}\n\n\`${technologies}\`${stars}\n`;
     })
     .join("\n");

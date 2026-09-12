@@ -80,3 +80,19 @@ test("renderCoreStack groups by category and respects the total limit", () => {
   assert.match(markdown, /\*\*Languages:\*\* TypeScript · SQL/);
   assert.doesNotMatch(markdown, /Hono/);
 });
+
+test("renderSelectedWork suppresses the star badge when the count is 0", () => {
+  const markdown = renderSelectedWork([
+    {
+      project: {
+        title: "Maureen",
+        slug: "maureen",
+        shortDescription: "WhatsApp automation platform",
+        technologies: ["Hono"],
+        githubUrl: "https://github.com/vid3v/maureen",
+      },
+      repo: { stargazers_count: 0 },
+    },
+  ]);
+  assert.doesNotMatch(markdown, /⭐/);
+});

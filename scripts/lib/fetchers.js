@@ -32,7 +32,7 @@ export function validatePortfolio({ profile, projects, stack }) {
   if (!Array.isArray(projects) || projects.length === 0) {
     throw new Error("Portfolio projects response is malformed");
   }
-  if (!Array.isArray(stack)) {
+  if (!Array.isArray(stack) || stack.length === 0) {
     throw new Error("Portfolio stack response is malformed");
   }
 }
