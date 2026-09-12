@@ -1,0 +1,23 @@
+{
+  "portfolioBaseUrl": "https://vid3v.com",
+  "githubUser": "vid3v",
+  "limits": {
+    "selectedWork": 3,
+    "recentActivity": 5,
+    "popularWork": 5,
+    "coreStackItems": 18
+  },
+  "weights": {
+    "relevance": 3,
+    "utility": 2,
+    "popularity": 1,
+    "freshness": 1
+  },
+  "selectedProjects": [
+    { "slug": "feathers-refresh", "githubRepo": "vid3v/feathers-refresh" },
+    { "slug": "maureen", "githubRepo": "vid3v/maureen" },
+    { "slug": "waitnous", "githubRepo": "vid3v/wait-nous-app" },
+    { "slug": "fala-money", "githubRepo": null },
+    { "slug": "factory-management", "githubRepo": null }
+  ]
+}
