@@ -40,7 +40,7 @@ Trust-focused ridesharing platform for the Canadian market: mobile app, real-tim
 ## Recent GitHub activity
 
 <!-- PROFILE:START:RECENT_ACTIVITY -->
-- Pushed to [`vid3v/feathers-refresh`](https://github.com/vid3v/feathers-refresh)
+Focused on private client work — see [Selected work](#selected-work).
 <!-- PROFILE:END:RECENT_ACTIVITY -->
 
 ## Open source & public work
